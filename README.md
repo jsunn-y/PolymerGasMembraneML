@@ -3,7 +3,7 @@
 Code for benchmarking ML models for synthesis-property relationships of polymer gas separation membranes using supervised and unsupervised learning. Please refer to the manuscript for additional details.
 
 ### Relevant Datasets:
-**dataset1_imputed_all.csv**: training set containing SMILES string inputs, raw premeabilities, and imputer permeabilities among other information
+**dataset1_imputed_all.csv**: training set containing SMILES string inputs, raw premeabilities, and imputed permeabilities among other information
 
 **dataset2.csv**: screening dataset with SMILES strings
 
