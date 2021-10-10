@@ -1,0 +1,14 @@
+name: pgmML
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.7.9
+  - numpy=1.19.5
+  - pandas=0.24.2
+  - matplotlib=3.0.3
+  - scikit-learn=0.22.2
+  - tensorflow=2.4.0
+  - shap=0.39.0
+  - seaborn=0.9.0
+  - pip
