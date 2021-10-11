@@ -42,16 +42,16 @@ The performance of a trained model can be verified via:
 ```
 python plot_modelR2.py --modelname 'DNN_BLR_fing'
 ```
-<img src="images/plot_modelR2_example.jpg" width="500">
+<p align="center"><img src="images/plot_modelR2_example.jpg" width="500">
 Similarly, the shap values for a trained model can be visualized via:
 ```
 python plot_SHAP.py --modelname 'DNN_BLR_fing'
 ```
 
-<img src="images/plot_SHAP_example1.jpg" width="300">
-<img src="images/plot_SHAP_example2.jpg" width="300">
+<p align="center"><img src="images/plot_SHAP_example1.jpg" width="300">
+<p align="center"><img src="images/plot_SHAP_example2.jpg" width="300">
 We also offer a template `plot_robeson.py` to visualize permeabilities inthe context of O2/N2 and CO2/CH4 separations.
-<img src="images/plot_robeson_example.jpg" width="500">
+<p align="center"><img src="images/plot_robeson_example.jpg" width="500">
 
 ## License
 Please refer to our paper for details.
