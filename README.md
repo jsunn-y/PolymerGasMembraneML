@@ -42,7 +42,7 @@ The performance of a trained model can be verified via:
 ```
 python plot_modelR2.py --modelname 'DNN_BLR_fing'
 ```
-![image](images/plot_modelR2_example.tif)
+![image](images/plot_modelR2_example.jpg)
 Similarly, the shap values for a trained model can be visualized via:
 ```
 python plot_SHAP.py --modelname 'DNN_BLR_fing'
