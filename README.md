@@ -12,3 +12,6 @@ cd ./PolymerGasMembraneML
 conda env create -f pgmML.yml
 ```
 However, for calculating chemical descriptors and fingerprints, a separate rdkit environment is required.
+
+## General Use
+Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow. Step 1, curating a dataset of SMILES strings and permeabities, has been accomplished and the results are contained in the 'datasets' folder. Step 2, generating chemical representations via RDKit, is an optional step and is only necessary for the screnning datasets (Datasets B and C), as the training set has already been converted. Step 3 is training ML models, 
