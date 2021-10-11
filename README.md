@@ -1,7 +1,7 @@
-<p align="center"><img src="images/workflow.jpg" width="800"></p> 
-
 # PolymerGasMembraneML (pgmML)
 A machine-learning framework that can learn an accurate, interpretable model between polymer chemistry and membrane gas permeability. Please refer to our work "Discovery of High-Performance Polymers for Gas-Separation Membranes using Interpretable Machine Learning" for additional details.
+
+<p align="center"><img src="images/workflow.jpg" width="800"></p> 
 
 ## Installation
 To download, clone this repository
