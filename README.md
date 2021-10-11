@@ -41,7 +41,7 @@ python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
 python step4_screen.py --modelname 'DNN_BLR_fing' --dataset 'datasetDX_fing.csv'
 ```
-5. MD simulation details are not included here, as the procedure follows that detailed in past works.
+5. Please refer to our paper for details on the implementation of MD simulations for validation.
 
 ## Visualization of Results
 The performance of a trained model can be verified via:
