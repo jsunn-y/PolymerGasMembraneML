@@ -14,11 +14,11 @@ conda env create -f pgmML.yml
 However, for calculating chemical descriptors and fingerprints, a separate rdkit environment is required. Installation instructions can be found in [rdkit documentation](https://www.rdkit.org/docs/Install.html).
 
 ## Datasets
-In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Due to large size of Datasets B and C, we do not include any calculated features in our hub, and for Dataset C, we only include the first 1 million SMILES strings. 
+In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Due to large size of Datasets B and C, we do not include any calculated features in this github in  `/datasets`, and for Dataset C, we only include the first 1 million SMILES strings. 
 However all the datasets used in this work, including smiles and calculated fingerprints, can be downloaded [here](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing).
 | Dataset | Description | Included in Github | Download at Link Above|
 |:-------|:-------:|:-------:|:-------:|
-| Dataset A | Training Set | `datasetA_imputed_all.csv` `datasetAX_desc` `datasetAX_fing`| None | 
+| Dataset A | Training Set | `datasetA_imputed_all.csv` `datasetAX_desc.csv` `datasetAX_fing.csv`| None | 
 | Dataset B | 1 million screening | `datasetB.csv` | `datasetBX_fing.csv` |
 | Dataset C | 8 million screening | `datasetC_0.csv` | `datasetC_1-8.csv` `datasetCX_fing_0-8.csv` |
 | Dataset D | 1 thousand screening | `datasetD.csv` `datasetDX_fing.csv` | None |
