@@ -43,7 +43,7 @@ def screen(args):
         Y = DatasetA_grouped.iloc[:,-6:]
     
     Xstandard = pd.read_csv(os.getcwd() + '\\datasets\\datasetAX_' + features + '.csv')
-    X_pred = pd.read_csv(os.getcwd() + '\\datasets\\' + args.dataset + 'X_' + features + '.csv')
+    X_pred = pd.read_csv(os.getcwd() + '\\datasets\\' + args.dataset)
     os.chdir(maindirectory)
 
     #obtain the proper Xscaler
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     parser.add_argument('--modelname', type=str, required = True, 
     	help='provide the name of the folder in the "model" folder')        
     parser.add_argument('--dataset', type=str, required = True, 
-    	help='choose the file name of one of the descriptor of fingerprint datasets (B,C,D) to use as inputs in the ML model')
+    	help='choose the file name of one of the descriptor of fingerprint datasets (B,C,D) to use as inputs in the ML model. Note that the type of feature must match the model.')
 
     parsed_args = parser.parse_args()
 
