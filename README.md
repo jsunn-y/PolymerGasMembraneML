@@ -35,7 +35,7 @@ python step3_train.py --features 'fing' --imputation 'BLR' --model 'DNN'
 ```
 Alternatively, one can also train on descriptors, use extremely randomized trees for imputation, and train a random forest. We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper.
 
-Using the saved models, it is possible to extract the model's SHAP values in step 3.5. For example, run:
+Using the saved models, it is possible to extract the model's [SHAP values](https://shap.readthedocs.io/en/latest/index.html) in step 3.5. For example, run:
 ```
 python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
