@@ -46,6 +46,8 @@ python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
 python step4_screen.py --modelname 'DNN_BLR_fing' --dataset 'datasetDX_fing.csv'
 ```
+Note that the input features of the screening dataset must match that of the trained model.
+
 5. Please refer to our paper for details on the implementation of MD simulations for validation.
 
 ## Visualization of Results
