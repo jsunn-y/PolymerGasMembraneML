@@ -14,8 +14,14 @@ conda env create -f pgmML.yml
 However, for calculating chemical descriptors and fingerprints, a separate rdkit environment is required. Installation instructions can be found in [rdkit documentation](https://www.rdkit.org/docs/Install.html).
 
 ## Datasets
-In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Due to large size of Datasets B and C, we do not include any calculated features in our hub, and for Dataset C, we only include the first 1 million SMILES strings. 
+In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Due to large size of Datasets B and C, we do not include any calculated features in this github in  `/datasets`, and for Dataset C, we only include the first 1 million SMILES strings. 
 However all the datasets used in this work, including smiles and calculated fingerprints, can be downloaded [here](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing).
+| Dataset | Description | Included in Github | Download at Link Above|
+|:-------|:-------:|:-------:|:-------:|
+| Dataset A | Training Set | `datasetA_imputed_all.csv` `datasetAX_desc.csv` `datasetAX_fing.csv`| None | 
+| Dataset B | 1 million screening | `datasetB.csv` | `datasetBX_fing.csv` |
+| Dataset C | 8 million screening | `datasetC_0.csv` | `datasetC_1-8.csv` `datasetCX_fing_0-8.csv` |
+| Dataset D | 1 thousand screening | `datasetD.csv` `datasetDX_fing.csv` | None |
 
 ## General Use
 Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow.
@@ -31,23 +37,27 @@ Using the saved models, it is possible to extract the model's SHAP values in ste
 ```
 python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
-4. As part of the discovery framework, we also screen large datasets of polymers to predict their permeabilities and identify promising candidates. To screen Dataset B on the model that we trained and analyzed above, run:
+4. As part of the discovery framework, we also screen large datasets of polymers to predict their permeabilities and identify promising candidates. To screen Dataset D on the model that we trained and analyzed above, run:
 ```
-python step4_screen.py --modelname 'DNN_BLR_fing' --dataset 'datasetBX_fing.csv'
+python step4_screen.py --modelname 'DNN_BLR_fing' --dataset 'datasetDX_fing.csv'
 ```
-5. MD simulation details are not included here, as the procedure follows that detailed in past works.
+5. Please refer to our paper for details on the implementation of MD simulations for validation.
 
 ## Visualization of Results
 The performance of a trained model can be verified via:
 ```
 python plot_modelR2.py --modelname 'DNN_BLR_fing'
 ```
-![image](images/plot_modelR2_example.tif)
-Similarly, the shap values for a trained model can be visualized via:
+The predicted and actual permeabilties are plotted like below:
+<p align="center"><img src="images/plot_modelR2_example.jpg" width="500" alt="" /></p> 
+
+Similarly, the SHAP values for physical insights into a trained model can be visualized using the following code:
 ```
 python plot_SHAP.py --modelname 'DNN_BLR_fing'
 ```
-We also offer a template `plot_robeson.py` to visualize permeabilities inthe context of O2/N2 and CO2/CH4 separations.
+
+We also offer a template `plot_robeson.py` to visualize permeabilities inthe context of O2/N2 and CO2/CH4 separations, which produces plots like such:
+<p align="center"><img src="images/plot_robeson_example.jpg" width="500"></p> 
 
 ## License
 Please refer to our paper for details.
