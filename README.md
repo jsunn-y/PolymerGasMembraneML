@@ -6,7 +6,7 @@ To download, clone this repository
 ```
 git clone https://github.com/jsunn-y/PolymerGasMembraneML
 ```
-To run most of the code, the anaconda environment can be downloaded from `pgmML.yml`. To build this environment, run
+To run any code does not require chemical feature calculation via rdkit, the anaconda environment can be downloaded from `pgmML.yml`. To build this environment, run
 ```
 cd ./PolymerGasMembraneML
 conda env create -f pgmML.yml
@@ -18,4 +18,18 @@ In addition to the training dataset, Dataset A, we use 3 screening datasets in t
 However all the datasets used in this work, including smiles and calculated fingerprints, can be downloaded [here](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing).
 
 ## General Use
-Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow. Step 1, curating a dataset of SMILES strings and permeabities, has been accomplished and the results are contained in the 'datasets' folder. Step 2, generating chemical representations via RDKit, is an optional step as all fingerprints have been generated and uploaded [at the same link above](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing). The chemical features of the training set have already been computed and uploaded to the 'datasets' folder. Step 3 is training ML models, 
+Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow. Step 1, curating a dataset of SMILES strings and permeabities, has been accomplished and the results are contained in the `datasets` folder. Step 2, generating chemical representations via RDKit, is an optional step as all fingerprints have been generated and uploaded [at the same link above](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing). The chemical features of the training set have already been computed and uploaded to the `datasets` folder. 
+
+We believe that this repository will be most useful for Step3-4, training, interpretation, and screening.
+We recommend training our top-performing ML model, a DNN ensemble trained using Morgan fingerprints as inputs with permeabilities imputed using Bayesian Linear Regression in step 3:
+```
+python step3_train.py --features 'fing' --imputation 'BLR' --model 'DNN'
+```
+Alternatively, one can also train on descriptors, use extremely randomized trees for imputation, and train a random forest. We also include several pretrained models in `pretrained_models` to replicate similar results to those demonstrated in our paper.
+
+Using the saved models, it is possible to obtain the model's SHAP values in step 3.5:
+```
+python step3.5_train.py --features 'fing' --imputation 'BLR' --model 'DNN'
+```
+
+## Result Visualization
