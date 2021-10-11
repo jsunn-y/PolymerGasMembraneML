@@ -3,6 +3,7 @@ import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem import Descriptors
+import os
 
 '''
 Script to choose the pertinent molecular descriptors or fingerprints
@@ -15,9 +16,10 @@ Representations are saved as .csv files with columns as features and rows as sam
 '''
 
 def calculate_representations(args):
-    DatasetA_Smiles_P = pd.read_csv("\\datasets\\datasetA_imputed_all.csv")
+    os.chdir(os.getcwd() + '\\datasets\\')
+    DatasetA_Smiles_P = pd.read_csv("datasetA_imputed_all.csv")
     DatasetA_grouped = DatasetA_Smiles_P.groupby('Smiles').mean().reset_index()
-    Dataset = pd.read_csv('\\datasets\\' + args.dataset)
+    Dataset = pd.read_csv(args.dataset)
     
     if args.features == 'desc':
         #get the descriptors from SMILES for Dataset A
