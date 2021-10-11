@@ -27,7 +27,7 @@ However all the datasets used in this work, including smiles and calculated fing
 
 ## General Use
 Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow.
-1. We have curated a dataset of SMILES strings and permeabities, and the results are contained in the `/datasets` folder.
+1. We have curated a dataset of SMILES strings and permeabities, and the results are contained in the `/datasets` folder. Imputed permeabilities are included in the datasets, based on [this code](https://github.com/qyuan7/polymer_permeability_imputation). More details can be found in the study by [Yuan et al.](https://www.sciencedirect.com/science/article/pii/S0376738821001575).
 2. The chemical features of the training set have been computed and uploaded to the `/datasets` folder. All remaining fingerprints and datasets have been generated via rdkit and uploaded at the [same link as above](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing). Running `step2_generateXfeatures.py` to calculate chemical features is optional, but we have included the code for those who might find it beneficial
 3. We recommend training our top-performing ML model, a DNN ensemble trained using Morgan fingerprints as inputs with permeabilities imputed using Bayesian Linear Regression:
 ```
