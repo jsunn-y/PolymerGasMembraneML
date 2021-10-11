@@ -16,6 +16,12 @@ However, for calculating chemical descriptors and fingerprints, a separate rdkit
 ## Datasets
 In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Due to large size of Datasets B and C, we do not include any calculated features in our hub, and for Dataset C, we only include the first 1 million SMILES strings. 
 However all the datasets used in this work, including smiles and calculated fingerprints, can be downloaded [here](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing).
+| Dataset | Description | Included in Github | Download at Link Above|
+|:-------|:-------:|:-------:|:-------:|
+| Dataset A | Training Set | `datasetA_imputed_all.csv` `datasetAX_desc` `datasetAX_fing`| None | 
+| Dataset B | 1 million screening | `datasetB.csv` | `datasetBX_fing.csv` |
+| Dataset C | 8 million screening | `datasetC_0.csv` | `datasetC_1-8.csv` `datasetCX_fing_0-8.csv` |
+| Dataset D | 1 thousand screening | `datasetD.csv` `datasetDX_fing.csv` | None |
 
 ## General Use
 Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow.
