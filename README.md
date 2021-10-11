@@ -46,7 +46,7 @@ Similarly, the shap values for a trained model can be visualized via:
 ```
 python plot_SHAP.py --modelname 'DNN_BLR_fing'
 ```
-We also offer a template `plot_robeson.py` to visualize permeabilities for O2/N2 and CO2/CH4 separations in context.
+We also offer a template `plot_robeson.py` to visualize permeabilities inthe context of O2/N2 and CO2/CH4 separations.
 
 ## License
 Please refer to our paper for details.
