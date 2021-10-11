@@ -36,4 +36,13 @@ As part of the discovery framework, we also screen large datasets of polymers to
 python step4_screen.py --modelname 'DNN_BLR_fing' --dataset 'datasetBX_fing.csv'
 ```
 ## Visualization of Results
+The performance of a trained model can be verified via:
+```
+python plot_modelR2.py --modelname ''DNN_BLR_fing'
+```
+Similarly, the shap values for a trained model can be visualized via:
+```
+python plot_SHAP.py --modelname ''DNN_BLR_fing'
+```
+We also offer a template `plot_robeson.py` to visualize permeabilities for O_2/N_2 and CO_2/CH_4 separations in context.
 
