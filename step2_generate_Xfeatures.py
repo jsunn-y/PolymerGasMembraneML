@@ -17,7 +17,7 @@ Representations are saved as .csv files with columns as features and rows as sam
 def calculate_representations(args):
     DatasetA_Smiles_P = pd.read_csv("\\datasets\\datasetA_imputed_all.csv")
     DatasetA_grouped = DatasetA_Smiles_P.groupby('Smiles').mean().reset_index()
-    Dataset = pd.read_csv('\\datasets\\' + args.dataset + '.csv')
+    Dataset = pd.read_csv('\\datasets\\' + args.dataset)
     
     if args.features == 'desc':
         #get the descriptors from SMILES for Dataset A
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     parser.add_argument('--features', type=str, required = True, 
     	help='Choose either "desc" for chemical descriptors or "fing" for fingerprints as the input features')
     parser.add_argument('--dataset', type=str, required = True, 
-    	help='Choose  "datasetB" or "datasetC" within the dataset folder to compute the features of')        
+    	help='Specify the filename, without .csv, (datasetB or datasetC) within the dataset folder to compute the features of. This files should have a single column of Smiles Strings')        
 
     parsed_args = parser.parse_args()
 
