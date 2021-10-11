@@ -6,12 +6,12 @@ To download, clone this repository
 ```
 git clone https://github.com/jsunn-y/PolymerGasMembraneML
 ```
-To run any code does not require chemical feature calculation via rdkit, the anaconda environment can be downloaded from `pgmML.yml`. To build this environment, run
+To run any code in this repository that does not require chemical feature calculation via rdkit, the relevant anaconda environment can be installed from `pgmML.yml`. To build this environment, run
 ```
 cd ./PolymerGasMembraneML
 conda env create -f pgmML.yml
 ```
-However, for calculating chemical descriptors and fingerprints, a separate rdkit environment is required. Installation instructions can be found [here](https://www.rdkit.org/docs/Install.html).
+However, for calculating chemical descriptors and fingerprints, a separate rdkit environment is required. Installation instructions can be found in [rdkit documentation](https://www.rdkit.org/docs/Install.html).
 
 ## Datasets
 In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Due to large size of Datasets B and C, we do not include any calculated features in our hub, and for Dataset C, we only include the first 1 million SMILES strings. 
