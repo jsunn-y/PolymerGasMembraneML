@@ -45,7 +45,7 @@ python plot_modelR2.py --modelname 'DNN_BLR_fing'
 The predicted and actual permeabilties are plotted like below:
 <p align="center"><img src="images/plot_modelR2_example.jpg" width="500" alt="" /></p> 
 
-Similarly, the shap values for a trained model can be visualized via:
+Similarly, the SHAP values for physical insights into a trained model can be visualized using the following code:
 ```
 python plot_SHAP.py --modelname 'DNN_BLR_fing'
 ```
