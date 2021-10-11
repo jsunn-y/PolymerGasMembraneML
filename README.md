@@ -18,7 +18,7 @@ However, for calculating chemical descriptors and fingerprints, a separate rdkit
 ## Datasets
 In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Due to large size of Datasets B and C, we do not include any calculated features in this github in  `/datasets`, and for Dataset C, we only include the first 1 million SMILES strings. 
 However all the datasets used in this work, including smiles and calculated fingerprints, can be downloaded [here](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing).
-| Dataset | Description | Included in Github | Download Available at [Link](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing)|
+| Dataset | Description | Included in Github | Additional Download Available at [Link](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing)|
 |:-------|:-------:|:-------:|:-------:|
 | Dataset A | Training Set | `datasetA_imputed_all.csv` `datasetAX_desc.csv` `datasetAX_fing.csv`| None | 
 | Dataset B | 1 million screening | `datasetB.csv` | `datasetBX_fing.csv` |
