@@ -33,7 +33,7 @@ Referring to Figure 1 in our paper, there are 5 steps in our ML training and dis
 ```
 python step3_train.py --features 'fing' --imputation 'BLR' --model 'DNN'
 ```
-Alternatively, one can also train on descriptors, use extremely randomized trees for imputation, and train a random forest. We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper.
+Alternatively, one can also train on descriptors, use extremely randomized trees for imputation, and train a random forest. We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. Options for training are summarized below:
 | Features | Imputation | Model |
 |:-------|:-------:|:-------:|
 |`'fing'` `'desc'`| `'BLR'` `'ERT'` | `'RF'` `'DNN'` | 
