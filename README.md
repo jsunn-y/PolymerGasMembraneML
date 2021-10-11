@@ -37,9 +37,9 @@ Using the saved models, it is possible to extract the model's SHAP values in ste
 ```
 python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
-4. As part of the discovery framework, we also screen large datasets of polymers to predict their permeabilities and identify promising candidates. To screen Dataset B on the model that we trained and analyzed above, run:
+4. As part of the discovery framework, we also screen large datasets of polymers to predict their permeabilities and identify promising candidates. To screen Dataset D on the model that we trained and analyzed above, run:
 ```
-python step4_screen.py --modelname 'DNN_BLR_fing' --dataset 'datasetBX_fing.csv'
+python step4_screen.py --modelname 'DNN_BLR_fing' --dataset 'datasetDX_fing.csv'
 ```
 5. MD simulation details are not included here, as the procedure follows that detailed in past works.
 
