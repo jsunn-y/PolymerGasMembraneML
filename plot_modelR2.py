@@ -13,7 +13,7 @@ Generates plots of actual permeability against predicted permeability for 6 gase
 
 def plot(args):
     #load in the data from the model training
-    os.chdir(os.getcwd() + '\\models\\' + args.directory)
+    os.chdir(os.getcwd() + '\\models\\' + args.modelname)
     Y_train=pd.read_csv('Y_train.csv', header=None)
     Y_train = Y_train.to_numpy()
     Y_pred_train=pd.read_csv('Y_pred_train.csv', header=None)
@@ -24,7 +24,7 @@ def plot(args):
     Y_pred_test = Y_pred_test.to_numpy()
 
     #plot the performance of the model for six gases
-    Columns = ['H2','He','O2','N2','CO2','CH4']
+    Columns = ['He','H2','O2','N2','CO2','CH4']
 
     fig = plt.figure(figsize=(12,8))
     for i in range(6):

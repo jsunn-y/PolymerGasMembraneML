@@ -23,8 +23,8 @@ from DNN_functions import nanmean_squared_error, evaluate_model, ensemble_predic
 Script to predict the permeabilities of polymers with known SMILES strings
 but unkown permeability, based on trained ML models.
 Requires the trained models as saved by step3_train.py. Relevant chemical features
-of the screenign dataset must also be saved by step2_generate_Xfeatures.py.
-Outputs .csv files with predicted permeabilities of six gases in column order ['H2','He','O2','N2','CO2','CH4'].
+of the screening dataset must also be saved by step2_generate_Xfeatures.py (or downloaded from datasets).
+Outputs .csv files with predicted permeabilities of six gases in column order ['He','H2','O2','N2','CO2','CH4'].
 '''
 
 def screen(args):
@@ -43,14 +43,15 @@ def screen(args):
         Y = DatasetA_grouped.iloc[:,-6:]
     
     Xstandard = pd.read_csv(os.getcwd() + '\\datasets\\datasetAX_' + features + '.csv')
-    X_pred = pd.read_csv(os.getcwd() + '\\datasets\\' + args.dataset)
+    X_pred = pd.read_csv(os.getcwd() + '\\datasets\\' + args.dataset, index_col=0) #for dataset B,C,D otherwise there is no index column
     os.chdir(maindirectory)
 
-    #obtain the proper Xscaler
-    Xstandard = np.array(Xstandard)
-    Xscaler = StandardScaler()
-    Xscaler.fit(Xstandard)
-    X_pred= Xscaler.transform(X_pred)
+    if features == 'desc':
+        #obtain the proper Xscaler
+        standard = np.array(Xstandard)
+        Xscaler = StandardScaler()
+        Xscaler.fit(Xstandard)
+        X_pred= Xscaler.transform(X_pred)
 
     #obatin the proper Yscaler
     Y = np.array(Y)
@@ -63,7 +64,7 @@ def screen(args):
 
         Y_pred = model.predict(X_pred)
         Y_pred = Yscaler.inverse_transform(Y_pred)
-        filename = 'Y_pred_' + args.dataset + '.csv'
+        filename = 'Y_pred_' + args.dataset
         np.savetxt(filename, Y_pred, delimiter=",")
         print('Predictions saved to ' + maindirectory + '\\' + filename)
     
@@ -82,7 +83,7 @@ def screen(args):
 
         Y_pred, Y_var = ensemble_predictions(models, X_pred)
         Y_pred = Yscaler.inverse_transform(Y_pred)
-        filename = 'Y_pred_' + args.dataset + '.csv'
+        filename = 'Y_pred_' + args.dataset
         np.savetxt(filename, Y_pred, delimiter=",")
         print('Predictions saved to ' + maindirectory + '\\' + filename)
 

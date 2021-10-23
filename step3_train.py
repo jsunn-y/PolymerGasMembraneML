@@ -25,7 +25,7 @@ Imputation can be Bayesian linear regression ("BLR") or extremely randomized tre
 Model can either be random forest ("RF") or ensemble of deep neural networks ("DNN").
 Outputs the saved model into the model folder, along with Y_train, Y_test, Y_pred_train, and Y_pred_test as .csv files.
 Each .csv file contains columns as gas permeability in the order 
-['H2','He','O2','N2','CO2','CH4'] and rows as samples.
+['He','H2','O2','N2','CO2','CH4'] and rows as samples.
 '''
 
 def train(args):
@@ -46,13 +46,14 @@ def train(args):
 
     if args.features == 'desc':
         X = pd.read_csv('datasets\datasetAX_desc.csv')
+
+        #normalize X
+        X = np.array(X)
+        Xscaler = StandardScaler()
+        X = Xscaler.fit_transform(X)
     if args.features == 'fing': 
         X = pd.read_csv('datasets\datasetAX_fing.csv')
-    
-    #normalize X
-    X = np.array(X)
-    Xscaler = StandardScaler()
-    X = Xscaler.fit_transform(X)
+        X = np.array(X)
 
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
     
@@ -128,7 +129,7 @@ def train(args):
         for count, model in enumerate(members):
             directory = os.getcwd() + '\models\DNN_' + args.imputation + '_' + args.features + '\DNN_' + str(count)
             model.save(directory)
-            maindirectory = os.getcwd() + 'models\DNN_' + args.imputation + '_' + args.features
+            maindirectory = os.getcwd() + '\models\DNN_' + args.imputation + '_' + args.features
         
         os.chdir(maindirectory)
         np.savetxt('Y_train.csv', Y_train, delimiter=",")
