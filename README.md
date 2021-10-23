@@ -1,7 +1,7 @@
 # PolymerGasMembraneML (pgmML)
 A machine-learning implementation that can learn accurate, interpretable models between polymer chemistry and membrane gas permeability, which can be used for polymer discovery. Please refer to our work "Discovery of High-Performance Polymers for Gas-Separation Membranes using Interpretable Machine Learning" for additional details.
 
-<p align="center"><img src="images/workflow.jpg" width="800"></p> 
+<p align="center"><img src="images/workflow_v2.jpg" width="800"></p> 
 
 ## Installation
 To download, clone this repository
@@ -67,7 +67,7 @@ python plot_SHAP.py --modelname 'DNN_BLR_desc'
 <p align="center"><img src="images/plot_SHAP_example.jpg" width="700"></p> 
 
 We also offer a template `plot_robeson.py` to visualize permeabilities in the context of O2/N2 and CO2/CH4 separations, which produces plots like such:
-<p align="center"><img src="images/plot_robeson_example.jpg" width="650"></p> 
+<p align="center"><img src="images/plot_robeson_example2.jpg" width="650"></p> 
 
 ## License
 Please refer to our paper for details.
