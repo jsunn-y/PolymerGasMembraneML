@@ -40,7 +40,7 @@ Alternatively, one can also train on descriptors, use extremely randomized trees
 |:-------|:-------:|:-------:|
 |`'fing'` `'desc'`| `'BLR'` `'ERT'` | `'RF'` `'DNN'` | 
 
-We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. Furthermore, the thousands of candidate polymers with promising performance identified from our main model are included in `/pretrained_models/DNN_BLR_fing/promising_candidates/`. We encourage computational and experimental researchers to explore these polymers further for gas separations. A summary of the polymers identified:
+We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. To directly use our pretrained models, rename `/pretrained_models` too `/models`. Furthermore, the thousands of candidate polymers with promising performance identified from our main model are included in `/pretrained_models/DNN_BLR_fing/promising_candidates/`. We encourage computational and experimental researchers to explore these polymers further for gas separations. A summary of the polymers identified:
 | filename | Description |
 |:-------|:-------:|
 |`above_ON_datasetB.csv`|Polymers from Dataset B predicted to lie above the 2008 Robeson upper bound for O2/N2 separations.|
