@@ -1,22 +1,24 @@
 # PolymerGasMembraneML (pgmML)
-A machine-learning implementation that can learn accurate, interpretable models between polymer chemistry and membrane gas permeability. Please refer to our work "Discovery of High-Performance Polymers for Gas-Separation Membranes using Interpretable Machine Learning" for additional details.
+A machine-learning implementation that can learn accurate, interpretable models between polymer chemistry and membrane gas permeability, which can be used for polymer discovery. Please refer to our work "Discovery of High-Performance Polymers for Gas-Separation Membranes using Interpretable Machine Learning" for additional details.
 
-<p align="center"><img src="images/workflow.jpg" width="800"></p> 
+<p align="center"><img src="images/workflow_v2.jpg" width="800"></p> 
 
 ## Installation
 To download, clone this repository
 ```
 git clone https://github.com/jsunn-y/PolymerGasMembraneML
 ```
-To run any code in this repository that does not require chemical feature calculation via rdkit, the relevant anaconda environment can be installed from `pgmML.yml`. To build this environment, run
+To run most code in this repository, the relevant anaconda environment can be installed from `pgmML.yml`. To build this environment, run
 ```
 cd ./PolymerGasMembraneML
 conda env create -f pgmML.yml
+conda activate pgmML
 ```
-However, for calculating chemical descriptors and fingerprints, a separate rdkit environment is required. Installation instructions can be found in [rdkit documentation](https://www.rdkit.org/docs/Install.html).
+However, for calculating chemical descriptors and fingerprints (optional task), a separate rdkit environment is required. Installation instructions can be found in [rdkit documentation](https://www.rdkit.org/docs/Install.html).
 
 ## Datasets
-In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Due to large size of Datasets B and C, we do not include any calculated features in this github in  `/datasets`, and for Dataset C, we only include the first 1 million SMILES strings. 
+In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Dataset A has both SMILES strings (chemistry) and permeabilities. Datasets B,C, and D only provide SMILES strings. Due to large size of Datasets B and C, we do not include any calculated features in this github in  `/datasets`, and for Dataset C, we only include the first 1 million SMILES strings. Note that Dataset C is split across 9 individual files do to its large memory requirements.
+
 However all the datasets used in this work, including smiles and calculated fingerprints, can be downloaded [here](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing).
 | Dataset | Description | Included in Github | Additional [Download Available](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing)|
 |:-------|:-------:|:-------:|:-------:|
@@ -27,15 +29,30 @@ However all the datasets used in this work, including smiles and calculated fing
 
 ## General Use
 Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow.
-1. We have curated a dataset of SMILES strings and permeabities, and the results are contained in the `/datasets` folder.
-2. The chemical features of the training set have been computed and uploaded to the `/datasets` folder. All remaining fingerprints and datasets have been generated via rdkit and uploaded at the [same link as above](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing). Running `step2_generateXfeatures.py` to calculate chemical features is optional, but we have included the code for those who might find it beneficial
+1. We have curated a dataset of SMILES strings and permeabilities, and the results are contained in the `/datasets` folder. Imputed permeabilities are included in the datasets, based on [this code](https://github.com/qyuan7/polymer_permeability_imputation). More details can be found in the study by [Yuan et al.](https://www.sciencedirect.com/science/article/pii/S0376738821001575)
+2. The chemical features of the training set have been computed and uploaded to the `/datasets` folder. All remaining fingerprints and datasets have been generated via rdkit and uploaded at the [same link as above](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing). Running `step2_generateXfeatures.py` to calculate chemical features is optional, but we have included the code for those who might find it beneficial.
 3. We recommend training our top-performing ML model, a DNN ensemble trained using Morgan fingerprints as inputs with permeabilities imputed using Bayesian Linear Regression:
 ```
 python step3_train.py --features 'fing' --imputation 'BLR' --model 'DNN'
 ```
-Alternatively, one can also train on descriptors, use extremely randomized trees for imputation, and train a random forest. We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper.
+Alternatively, one can also train on descriptors, use extremely randomized trees for imputation, and train a random forest. Options for training are summarized below:
+| Features | Imputation | Model |
+|:-------|:-------:|:-------:|
+|`'fing'` `'desc'`| `'BLR'` `'ERT'` | `'RF'` `'DNN'` | 
 
-Using the saved models, it is possible to extract the model's SHAP values in step 3.5. For example, run:
+We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. Furthermore, the thousands of candidate polymers with promising performance identified from our main model are included in `/pretrained_models/DNN_BLR_fing/promising_candidates/`. We encourage computational and experimental researchers to explore these polymers further for gas separations. A summary of the polymers identified:
+| filename | Description |
+|:-------|:-------:|
+|`above_ON_datasetB.csv`|Polymers from Dataset B predicted to lie above the 2008 Robeson upper bound for O2/N2 separations.|
+|`above_ON_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for O2/N2 separations.|
+|`above_CC_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for CO2/CH4 separations.|
+|`above_CN_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for CO2/N2 separations.|
+|`above_HC_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for H2/CO2 separations.|
+|`above_all_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for all 4 separations above.|
+|`high_O2perm_datasetC.csv`|Polymers from Dataset C predicted to have O2 permeability greater than 1,000 Barrer.|
+|`high_CO2perm_datasetC.csv`|Polymers from Dataset C predicted to have CO2 permeability greater than 10,000 Barrer.|
+
+Using the saved models, it is possible to extract the model's [SHAP values](https://shap.readthedocs.io/en/latest/index.html) in step 3.5. For example, run:
 ```
 python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
@@ -43,6 +60,8 @@ python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
 python step4_screen.py --modelname 'DNN_BLR_fing' --dataset 'datasetDX_fing.csv'
 ```
+Note that the input features of the screening dataset must match that of the trained model.
+
 5. Please refer to our paper for details on the implementation of MD simulations for validation.
 
 ## Visualization of Results
@@ -55,11 +74,12 @@ The predicted and actual permeabilties are plotted like below:
 
 Similarly, the SHAP values for physical insights into a trained model can be visualized using the following code:
 ```
-python plot_SHAP.py --modelname 'DNN_BLR_fing'
+python plot_SHAP.py --modelname 'DNN_BLR_desc'
 ```
+<p align="center"><img src="images/plot_SHAP_example.jpg" width="700"></p> 
 
-We also offer a template `plot_robeson.py` to visualize permeabilities inthe context of O2/N2 and CO2/CH4 separations, which produces plots like such:
-<p align="center"><img src="images/plot_robeson_example.jpg" width="650"></p> 
+We also offer a template `plot_robeson.py` to visualize permeabilities in the context of O2/N2, CO2/CH4, CO2/N2, and H2/CO2 separations, which produces plots like such:
+<p align="center"><img src="images/plot_robeson_example2.jpg" width="650"></p> 
 
 ## License
 Please refer to our paper for details.
