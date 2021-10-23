@@ -35,10 +35,22 @@ Referring to Figure 1 in our paper, there are 5 steps in our ML training and dis
 ```
 python step3_train.py --features 'fing' --imputation 'BLR' --model 'DNN'
 ```
-Alternatively, one can also train on descriptors, use extremely randomized trees for imputation, and train a random forest. We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. Options for training are summarized below:
+Alternatively, one can also train on descriptors, use extremely randomized trees for imputation, and train a random forest. Options for training are summarized below:
 | Features | Imputation | Model |
 |:-------|:-------:|:-------:|
 |`'fing'` `'desc'`| `'BLR'` `'ERT'` | `'RF'` `'DNN'` | 
+
+We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. Furthermore, the thousands of candidate polymers with promising performance identified from our main model are included in `/pretrained_models/DNN_BLR_fing/promising_candidates/`. We encourage computational and experimental researcher to explore these polymers further for gas separations. A summary of the polymers identified:
+| filename | Description |
+|:-------|:-------:|
+|`above_ON_datasetB.csv`|Polymers from Dataset B predicted to lie above the 2008 Robeson upper bound for O2/N2 separations.|
+|`above_ON_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for O2/N2 separations.|
+|`above_CC_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for CO2/CH4 separations.|
+|`above_CN_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for CO2/N2 separations.|
+|`above_HC_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for H2/CO2 separations.|
+|`above_all_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for all 4 separations above.|
+|`high_O2perm_datasetC.csv`|Polymers from Dataset C predicted to have O2 permeability greater than 1,000 Barrer.|
+|`high_CO2perm_datasetC.csv`|Polymers from Dataset C predicted to have CO2 permeability greater than 10,000 Barrer.|
 
 Using the saved models, it is possible to extract the model's [SHAP values](https://shap.readthedocs.io/en/latest/index.html) in step 3.5. For example, run:
 ```
