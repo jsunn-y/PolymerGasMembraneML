@@ -1,0 +1,4 @@
+Trained models will be saved here. The folder name will be in the format [model]_[imputation]_[features]
+[model] can be 'DNN' or 'RF'
+[imputation] can be 'BLR' or 'ERT'
+[features] can be 'desc' or 'fing'
