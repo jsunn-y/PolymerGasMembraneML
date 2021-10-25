@@ -1,5 +1,5 @@
 # PolymerGasMembraneML (pgmML)
-A machine-learning implementation that can learn accurate, interpretable models between polymer chemistry and membrane gas permeability, which can be used for polymer discovery. Please refer to our work "Discovery of High-Performance Polymers for Gas-Separation Membranes using Interpretable Machine Learning" for additional details.
+A machine-learning implementation that learns generalizable, interpretable models between polymer chemistry and membrane gas permeability, which can be used for polymer discovery. Please refer to our work "Discovery of Polymers for Next-Generation Gas-Separation Membranes using Interpretable Machine Learning" for additional details.
 
 <p align="center"><img src="images/workflow_v2.jpg" width="800"></p> 
 
@@ -30,7 +30,7 @@ However all the datasets used in this work, including smiles and calculated fing
 ## General Use
 Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow.
 1. We have curated a dataset of SMILES strings and permeabilities, and the results are contained in the `/datasets` folder. Imputed permeabilities are included in the datasets, based on [this code](https://github.com/qyuan7/polymer_permeability_imputation). More details can be found in the study by [Yuan et al.](https://www.sciencedirect.com/science/article/pii/S0376738821001575)
-2. The chemical features of the training set have been computed and uploaded to the `/datasets` folder. All remaining fingerprints and datasets have been generated via rdkit and uploaded at the [same link as above](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing). Running `step2_generateXfeatures.py` to calculate chemical features is optional, but we have included the code for those who might find it beneficial.
+2. The chemical features of the training set have been computed and uploaded to the `/datasets` folder. All remaining fingerprints and datasets have been generated via rdkit and uploaded at the [same link as above](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing). To use our code, download all the data and unzip them into the '/datasets' folder. Running `step2_generateXfeatures.py` to calculate chemical features is optional, but we have included the code for those who might find it beneficial.
 3. We recommend training our top-performing ML model, a DNN ensemble trained using Morgan fingerprints as inputs with permeabilities imputed using Bayesian Linear Regression:
 ```
 python step3_train.py --features 'fing' --imputation 'BLR' --model 'DNN'
@@ -40,7 +40,7 @@ Alternatively, one can also train on descriptors, use extremely randomized trees
 |:-------|:-------:|:-------:|
 |`'fing'` `'desc'`| `'BLR'` `'ERT'` | `'RF'` `'DNN'` | 
 
-We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. Furthermore, the thousands of candidate polymers with promising performance identified from our main model are included in `/pretrained_models/DNN_BLR_fing/promising_candidates/`. We encourage computational and experimental researchers to explore these polymers further for gas separations. A summary of the polymers identified:
+We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. To directly use our pretrained models, rename `/pretrained_models` to `/models`. The thousands of candidate polymers with promising performance identified from our model are included in `/pretrained_models/DNN_BLR_fing/promising_candidates/`. We encourage computational and experimental researchers to explore these polymers further for gas separations. A summary of the polymers identified:
 | filename | Description |
 |:-------|:-------:|
 |`above_ON_datasetB.csv`|Polymers from Dataset B predicted to lie above the 2008 Robeson upper bound for O2/N2 separations.|
@@ -52,7 +52,7 @@ We also include several pretrained models in `/pretrained_models` that reproduce
 |`high_O2perm_datasetC.csv`|Polymers from Dataset C predicted to have O2 permeability greater than 1,000 Barrer.|
 |`high_CO2perm_datasetC.csv`|Polymers from Dataset C predicted to have CO2 permeability greater than 10,000 Barrer.|
 
-Using the saved models, it is possible to extract the model's [SHAP values](https://shap.readthedocs.io/en/latest/index.html) in step 3.5. For example, run:
+Using the saved models, it is possible to extract the model's [SHAP values](https://shap.readthedocs.io/en/latest/index.html) to interpret trained ML models in step 3.5. For example, run:
 ```
 python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
