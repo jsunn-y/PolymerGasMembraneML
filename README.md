@@ -81,6 +81,3 @@ python plot_SHAP.py --modelname 'DNN_BLR_desc'
 We also offer a template `plot_robeson.py` to visualize permeabilities in the context of O2/N2, CO2/CH4, CO2/N2, and H2/CO2 separations, which produces plots like such:
 <p align="center"><img src="images/plot_robeson_example2.jpg" width="650"></p> 
 
-## License
-Please refer to our paper for details.
-
