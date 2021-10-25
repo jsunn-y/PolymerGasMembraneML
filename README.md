@@ -52,7 +52,7 @@ We also include several pretrained models in `/pretrained_models` that reproduce
 |`high_O2perm_datasetC.csv`|Polymers from Dataset C predicted to have O2 permeability greater than 1,000 Barrer.|
 |`high_CO2perm_datasetC.csv`|Polymers from Dataset C predicted to have CO2 permeability greater than 10,000 Barrer.|
 
-Using the saved models, it is possible to extract the model's [SHAP values](https://shap.readthedocs.io/en/latest/index.html) in step 3.5. For example, run:
+Using the saved models, it is possible to extract the model's [SHAP values](https://shap.readthedocs.io/en/latest/index.html) to interpret trained ML models in step 3.5. For example, run:
 ```
 python step3.5_SHAP.py --modelname 'DNN_BLR_fing'
 ```
