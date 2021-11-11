@@ -14,7 +14,7 @@ cd ./PolymerGasMembraneML
 conda env create -f pgmML.yml
 conda activate pgmML
 ```
-However, for calculating chemical descriptors and fingerprints (optional task), a separate rdkit environment is required. Installation instructions can be found in [rdkit documentation](https://www.rdkit.org/docs/Install.html).
+However, for calculating chemical descriptors and fingerprints (optional task), rdkit must be installed separately. Installation instructions can be found in [rdkit documentation](https://www.rdkit.org/docs/Install.html).
 
 ## Datasets
 In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Dataset A has both SMILES strings (chemistry) and permeabilities. Datasets B,C, and D only provide SMILES strings. Due to large size of Datasets B and C, we do not include any calculated features in this github in  `/datasets`, and for Dataset C, we only include the first 1 million SMILES strings. Note that Dataset C is split across 9 individual files do to its large memory requirements.
