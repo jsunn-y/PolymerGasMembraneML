@@ -6,17 +6,13 @@ from rdkit.Chem import Descriptors
 import os
 
 '''
-Script to choose the pertinent molecular descriptors or fingerprints
-for Dataset A (training) and calculate these chemical features for
-another dataset base on SMILES strings.
-Chemical features are already calculated for Dataset A, so training can begin
-without this step.
-Chemical features must be calculated before screening other datasets in step4_screen.py.
+Script to choose the pertinent molecular descriptors or fingerprints for Dataset A (training) and calculate these chemical features for another dataset base on SMILES strings.
+Chemical features are already calculated for Dataset A, so training can begin without this step.
 Representations are saved as .csv files with columns as features and rows as samples.
 '''
 
 def calculate_representations(args):
-    os.chdir(os.getcwd() + '\\datasets\\')
+    os.chdir(os.getcwd() + '/datasets/')
     DatasetA_Smiles_P = pd.read_csv("datasetA_imputed_all.csv")
     DatasetA_grouped = DatasetA_Smiles_P.groupby('Smiles').mean().reset_index()
     Dataset = pd.read_csv(args.dataset)
@@ -43,7 +39,7 @@ def calculate_representations(args):
         datasetX_descriptors = datasetX_descriptors[selected_keys]
         filename = args.dataset + 'X_desc.csv'
         datasetX_descriptors.to_csv(filename, index=False)
-        print('Features saved to \\datasets\\'+ filename)
+        print('Features saved to /datasets/'+ filename)
 
     if args.features == 'fing':
         #dataset-A fingerprint
@@ -103,7 +99,7 @@ def calculate_representations(args):
         MY_finger_dataset.columns = selected_Corr_df.index
         filename = args.dataset + 'X_fing.csv'
         MY_finger_dataset.to_csv(filename, index=False)
-        print('Features saved to \\datasets\\'+ filename)
+        print('Features saved to /datasets/'+ filename)
 
 #for parser arguments
 if __name__ == '__main__':

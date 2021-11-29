@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
 
 '''
-Script to visualize permeability data in the O2/N2 and CO2/CH4 Robeson spaces.
+Script to visualize permeability data in the O2/N2, CO2/CH4, CO2/N2, and H2/CO2 Robeson spaces.
 Data must be a csv file with 6 columns in the order of ['He','H2','O2','N2','CO2','CH4'] permeabilities.
 Update the filelist list with paths to each of the .csv files that are desired.
 Works with the .csv outputs of screen.py and train.py.
