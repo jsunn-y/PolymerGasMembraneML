@@ -18,20 +18,20 @@ import argparse
 import os
 from DNN_functions import nanmean_squared_error, evaluate_model, ensemble_predictions, evaluate_n_members
 
+
 '''
 Script to train the ML models used in this work.
 Input features can be chemical descriptors ("desc") or Morgan fingerprints ("fing").
 Imputation can be Bayesian linear regression ("BLR") or extremely randomized trees ("ERT").
 Model can either be random forest ("RF") or ensemble of deep neural networks ("DNN").
 Outputs the saved model into the model folder, along with Y_train, Y_test, Y_pred_train, and Y_pred_test as .csv files.
-Each .csv file contains columns as gas permeability in the order 
-['He','H2','O2','N2','CO2','CH4'] and rows as samples.
+Each .csv file contains columns as gas permeability in the order ['He','H2','O2','N2','CO2','CH4'] and rows as samples.
 '''
 
 def train(args):
 
     #read in the training data
-    DatasetA_Smiles_P = pd.read_csv("datasets\datasetA_imputed_all.csv")
+    DatasetA_Smiles_P = pd.read_csv("datasets/datasetA_imputed_all.csv")
     DatasetA_grouped = DatasetA_Smiles_P.groupby('Smiles').mean().reset_index()
 
     if args.imputation == 'BLR':
@@ -45,14 +45,14 @@ def train(args):
     Y = scaler.fit_transform(Y)
 
     if args.features == 'desc':
-        X = pd.read_csv('datasets\datasetAX_desc.csv')
+        X = pd.read_csv('datasets/datasetAX_desc.csv')
 
         #normalize X
         X = np.array(X)
         Xscaler = StandardScaler()
         X = Xscaler.fit_transform(X)
     if args.features == 'fing': 
-        X = pd.read_csv('datasets\datasetAX_fing.csv')
+        X = pd.read_csv('datasets/datasetAX_fing.csv')
         X = np.array(X)
 
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
@@ -69,10 +69,10 @@ def train(args):
         Y_pred_test = model.predict((X_test))
         Y_pred_test = scaler.inverse_transform(Y_pred_test)
 
-        maindirectory = os.getcwd() + '\models\RF_' + args.imputation + '_' + args.features
+        maindirectory = os.getcwd() + '/models/RF_' + args.imputation + '_' + args.features
         if  not os.path.exists(maindirectory):
             os.mkdir(maindirectory)
-        filename = maindirectory + '\RF_' + args.imputation + '_' + args.features + '.sav'
+        filename = maindirectory + '/RF_' + args.imputation + '_' + args.features + '.sav'
         pickle.dump(model, open(filename, 'wb'))
 
         os.chdir(maindirectory)
@@ -127,9 +127,9 @@ def train(args):
         #save current models
         print('Saving models...')
         for count, model in enumerate(members):
-            directory = os.getcwd() + '\models\DNN_' + args.imputation + '_' + args.features + '\DNN_' + str(count)
+            directory = os.getcwd() + '/models/DNN_' + args.imputation + '_' + args.features + '/DNN_' + str(count)
             model.save(directory)
-            maindirectory = os.getcwd() + '\models\DNN_' + args.imputation + '_' + args.features
+            maindirectory = os.getcwd() + '/models/DNN_' + args.imputation + '_' + args.features
         
         os.chdir(maindirectory)
         np.savetxt('Y_train.csv', Y_train, delimiter=",")

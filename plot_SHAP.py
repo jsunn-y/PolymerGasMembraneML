@@ -12,8 +12,8 @@ import shap
 '''
 Script for visualizing the results of SHAP for a given ML model.
 Requires SHAP values to be saved from SHAP.py.
-Generates (a) a SHAP summary plot for prediction of CH4 permeability
-and (b) a heatmap plot showing the top 10 most important chemical features
+Generates (a) a SHAP summary plot for prediction of each permeability
+and (b) a 3D bar graph showing the top 12 most important chemical features
 overall with respective impacts on 6 gas permeabilities.
 '''
 
@@ -21,9 +21,9 @@ def plot(args):
     modeltype = args.modelname.split('_')[0]
     imputation = args.modelname.split('_')[1]
     features = args.modelname.split('_')[2]
-    maindirectory = os.getcwd() + '\\models\\' + args.modelname
+    maindirectory = os.getcwd() + '/models/' + args.modelname
     
-    X_df = pd.read_csv(os.getcwd() + '\\datasets\\datasetAX_' + features + '.csv')
+    X_df = pd.read_csv(os.getcwd() + '/datasets/datasetAX_' + features + '.csv')
 
     #obtain the proper Xscaler
     X = np.array(X_df)
@@ -38,7 +38,7 @@ def plot(args):
     #plot the shap summary plot
     for i in range(6):
         fig = plt.figure()
-        shap.summary_plot(shap_values[i], X, feature_names=X_df.columns, show=False)
+        shap.summary_plot(shap_values[i], X, feature_names= np.array(['101', '107', '109','164', '79', '16', '15', '75', '116', '14']), show=False)
         plt.savefig('shap_' + str(i) + '.eps')
     plt.show()
 

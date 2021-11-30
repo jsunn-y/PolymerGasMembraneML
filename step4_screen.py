@@ -20,10 +20,9 @@ import os
 from DNN_functions import nanmean_squared_error, evaluate_model, ensemble_predictions
 
 '''
-Script to predict the permeabilities of polymers with known SMILES strings
-but unkown permeability, based on trained ML models.
-Requires the trained models as saved by step3_train.py. Relevant chemical features
-of the screening dataset must also be saved by step2_generate_Xfeatures.py (or downloaded from datasets).
+Script to predict the permeabilities of polymers with known SMILES strings but unkown permeability, based on trained ML models.
+Requires the trained models as saved by step3_train.py. 
+Relevant chemical features of the screening dataset must also be downloaded from the complete datasets folder in the github (or aved by step2_generate_Xfeatures.py).
 Outputs .csv files with predicted permeabilities of six gases in column order ['He','H2','O2','N2','CO2','CH4'].
 '''
 
@@ -32,9 +31,9 @@ def screen(args):
     imputation = args.modelname.split('_')[1]
     features = args.modelname.split('_')[2]
 
-    maindirectory = os.getcwd() + '\\models\\' + args.modelname
+    maindirectory = os.getcwd() + '/models/' + args.modelname
 
-    DatasetA_Smiles_P = pd.read_csv("datasets\datasetA_imputed_all.csv")
+    DatasetA_Smiles_P = pd.read_csv("datasets/datasetA_imputed_all.csv")
     DatasetA_grouped = DatasetA_Smiles_P.groupby('Smiles').mean().reset_index()
 
     if imputation == 'BLR':
@@ -42,8 +41,8 @@ def screen(args):
     if imputation == 'ERT':
         Y = DatasetA_grouped.iloc[:,-6:]
     
-    Xstandard = pd.read_csv(os.getcwd() + '\\datasets\\datasetAX_' + features + '.csv')
-    X_pred = pd.read_csv(os.getcwd() + '\\datasets\\' + args.dataset, index_col=0) #for dataset B,C,D otherwise there is no index column
+    Xstandard = pd.read_csv(os.getcwd() + '/datasets/datasetAX_' + features + '.csv')
+    X_pred = pd.read_csv(os.getcwd() + '/datasets/' + args.dataset, index_col=0) #for dataset B,C,D otherwise there is no index column
     os.chdir(maindirectory)
 
     if features == 'desc':

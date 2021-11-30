@@ -13,9 +13,8 @@ from DNN_functions import nanmean_squared_error
 '''
 Script to obtain SHAP values from ML models.
 Requires the trained models as saved by step3_train.py.
-Outputs 6 .csv files in the order ['He','H2','O2','N2','CO2','CH4']
-where each file displays the SHAP weights for a single permeability prediction.
-The rows correspond to samples and the columns correspend to chemical features.
+Outputs 6 .csv files in the order ['He','H2','O2','N2','CO2','CH4'] where each file displays the SHAP weights for a single permeability prediction.
+The rows correspond to samples and the columns correspond to chemical features.
 '''
 
 def SHAP(args):
@@ -24,9 +23,9 @@ def SHAP(args):
     imputation = args.modelname.split('_')[1]
     features = args.modelname.split('_')[2]
 
-    maindirectory = os.getcwd() + '\\models\\' + args.modelname
+    maindirectory = os.getcwd() + '/models/' + args.modelname
     
-    X_df = pd.read_csv(os.getcwd() + '\\datasets\\datasetAX_' + features + '.csv')
+    X_df = pd.read_csv(os.getcwd() + '/datasets/datasetAX_' + features + '.csv')
     os.chdir(maindirectory)
 
     #obtain the proper Xscaler
