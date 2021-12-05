@@ -43,12 +43,7 @@ def SHAP(args):
         shap_values = explainer.shap_values(background)
     
     if modeltype == 'DNN':
-        folders = os.listdir(maindirectory)
-        indices = []
-        for name in folders:
-            if os.path.isdir(name):
-                indices.append(int(name.split('_')[1]))
-        max_index = max(indices)
+        max_index = 15
 
         background = X
         avg_shap_values = np.zeros((6, X.shape[0], X.shape[1]))
