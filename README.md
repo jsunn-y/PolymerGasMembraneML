@@ -1,5 +1,5 @@
 # PolymerGasMembraneML (pgmML)
-A machine-learning implementation that learns generalizable, interpretable models between polymer chemistry and membrane gas permeability, which can be used for polymer discovery. Please refer to our work "Discovery of Polymers for Next-Generation Gas-Separation Membranes using Interpretable Machine Learning" for additional details.
+A machine-learning implementation that learns generalizable, interpretable models between polymer chemistry and membrane gas permeability, which can be used for polymer discovery. Please refer to our work "Discovery of Innovative Polymers for Next-Generation Gas-Separation Membranes using Interpretable Machine Learning" for additional details.
 
 <p align="center"><img src="images/workflow_v2.jpg" width="800"></p> 
 
