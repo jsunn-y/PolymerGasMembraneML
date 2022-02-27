@@ -63,21 +63,7 @@ Note that the input features of the screening dataset must match that of the tra
 5. Please refer to our paper for details on the implementation of MD simulations for validation.
 
 ## Visualization of Results
-The performance of a trained model can be verified via:
-```
-python plot_modelR2.py --modelname 'DNN_BLR_fing'
-```
-The predicted and actual permeabilties are plotted like below:
-<p align="center"><img src="images/plot_modelR2_example.jpg" width="600" alt="" /></p> 
-
-Similarly, the SHAP values for physical insights into a trained model can be visualized using the following code:
-```
-python plot_SHAP.py --modelname 'DNN_BLR_desc'
-```
-<p align="center"><img src="images/plot_SHAP_example.jpg" width="700"></p> 
-
-We also offer a template `plot_robeson.py` to visualize permeabilities in the context of O2/N2, CO2/CH4, CO2/N2, and H2/CO2 separations, which produces plots like such:
-<p align="center"><img src="images/plot_robeson_example2.jpg" width="650"></p> 
+`visualizations.ipynb` offers several useful functions for visualization the results of the ML models. The performance of a trained model can be verified via `plotR2()`, while SHAP values for physical insights into a trained model can be visualized using `plotSHAP()`, and 'plotRobeson() visualizes permeabilities in the context of O2/N2, CO2/CH4, CO2/N2, and H2/CO2 separations.
 
 ## License
 Please refer to our paper for details.
