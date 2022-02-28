@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import argparse
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem import Descriptors
@@ -73,7 +74,7 @@ def calculate_representations(args):
         Zero_Sum = (MY_finger_dataset_A == 0).astype(int).sum()
         NumberOfZero = 325 #adjust this number based on the tolerance of how many substructures
         print(len(Zero_Sum[Zero_Sum < NumberOfZero]))
-        X_fingerprints = MY_finger_dataset_1[Zero_Sum[Zero_Sum < NumberOfZero].index]
+        X_fingerprints = MY_finger_dataset_A[Zero_Sum[Zero_Sum < NumberOfZero].index]
         new_length = X_fingerprints.shape[1]
 
         selected_keys = X_fingerprints.columns
