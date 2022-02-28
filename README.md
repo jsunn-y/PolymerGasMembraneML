@@ -17,8 +17,8 @@ However, for calculating chemical descriptors and fingerprints (optional task), 
 ## Datasets
 In addition to the training dataset, Dataset A, we use 3 screening datasets in this work: Dataset B, C, and D. Dataset A has both SMILES strings (chemistry) and permeabilities. Datasets B,C, and D only provide SMILES strings. Due to large size of Datasets B and C, we do not include any calculated features in this github in  `/datasets`, and for Dataset C, we only include the first 1 million SMILES strings. Note that Dataset C is split across 9 individual files due to its large memory requirements.
 
-However all the datasets used in this work, including SMILES and calculated fingerprints, can be downloaded [here](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing).
-| Dataset | Description | Included in Github | Additional [Download Available](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing)|
+However all the datasets used in this work, including SMILES and calculated fingerprints, can be downloaded [here](http://dx.doi.org/10.22002/D1.20048).
+| Dataset | Description | Included in Github | Additional [Download Available](http://dx.doi.org/10.22002/D1.20048)|
 |:-------|:-------:|:-------:|:-------:|
 | Dataset A | Training Set | `datasetA_imputed_all.csv` `datasetAX_desc.csv` `datasetAX_fing.csv`| None | 
 | Dataset B | 1 million screening | `datasetB.csv` | `datasetBX_fing.csv` |
@@ -28,7 +28,7 @@ However all the datasets used in this work, including SMILES and calculated fing
 ## General Use
 Referring to Figure 1 in our paper, there are 5 steps in our ML training and discovery workflow.
 1. We have curated a dataset of SMILES strings and permeabilities, and the results are contained in the `/datasets` folder. Imputed permeabilities are included in the datasets, based on [this code](https://github.com/qyuan7/polymer_permeability_imputation). More details can be found in the study by [Yuan et al.](https://www.sciencedirect.com/science/article/pii/S0376738821001575)
-2. The chemical features of the training set have been computed and uploaded to the `/datasets` folder. All remaining fingerprints and datasets have been generated via rdkit and uploaded at the [same link as above](https://drive.google.com/file/d/1NPh3Hx3nHakUH4bgp24Ie1KCEAvZnCr4/view?usp=sharing). To use our code, download all the data and unzip them into the '/datasets' folder. Running `step2_generateXfeatures.py` to calculate chemical features is not required, but we have included the code for those who might find it beneficial.
+2. The chemical features of the training set have been computed and uploaded to the `/datasets` folder. All remaining fingerprints and datasets have been generated via rdkit and uploaded at the [same link as above](http://dx.doi.org/10.22002/D1.20048). To use our code, download all the data and unzip them into the '/datasets' folder. Running `step2_generateXfeatures.py` to calculate chemical features is not required, but we have included the code for those who might find it beneficial.
 3. We recommend training our top-performing ML model, a DNN ensemble trained using Morgan fingerprints as inputs with permeabilities imputed using Bayesian Linear Regression:
 ```
 python step3_train.py --features 'fing' --imputation 'BLR' --model 'DNN'
