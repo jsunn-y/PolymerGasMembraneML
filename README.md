@@ -38,15 +38,18 @@ Alternatively, one can also train on descriptors, use extremely randomized trees
 |:-------|:-------:|:-------:|
 |`'fing'` `'desc'`| `'BLR'` `'ERT'` | `'RF'` `'DNN'` | 
 
-We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. To directly use our pretrained models, rename `/pretrained_models` to `/models`. The thousands of candidate polymers with promising performance identified in our study are included in `/pretrained_models/DNN_BLR_fing/promising_candidates/`. We encourage computational and experimental researchers to explore these polymers further for gas separations. A summary of the polymers identified:
-| filename | Description |
-|:-------|:-------:|
-|`above_ON_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for O2/N2 separations.|
-|`above_CC_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for CO2/CH4 separations.|
-|`above_CN_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for CO2/N2 separations.|
-|`above_HC_datasetC.csv`|Polymers from Dataset C predicted to lie above the 2008 Robeson upper bound for H2/CO2 separations.|
-|`high_O2perm_datasetC.csv`|Polymers from Dataset C predicted to have O2 permeability greater than 1,000 Barrer.|
-|`high_CO2perm_datasetC.csv`|Polymers from Dataset C predicted to have CO2 permeability greater than 10,000 Barrer.|
+We also include several pretrained models in `/pretrained_models` that reproduce the results demonstrated in our paper. To directly use our pretrained models, rename `/pretrained_models` to `/models`. The thousands of candidate polymers with promising performance (beyond 2008 Robeson upper bounds, or with high permeability) identified in our study are included in `/pretrained_models/DNN_BLR_fing/top_polymers.csv`. We encourage computational and experimental researchers to explore these polymers further for gas separations. A summary of the columns in this dataset:
+
+| Column Name | Description |
+|:-------|:----------------:|
+|Smiles |SMILES string for the polymer| 
+|Smi_A |SMILES string for the diamine/diisocyanante component of the polymer| 
+|Smi_B |SMILES string for the dianhydride component of the polymer| 
+|SA_A |Synthetic accessibility socre for component A|
+|SA_B |Synthetic accessibility socre for component B|
+|He, H2, O2, N2, CO2, CH4 |log_10 of the gas permeability measured in Barrer|
+|Ondist, CCdist, CNdist, HCdist|log_10 of the distance above the 2008 Robeson upper bound for O2/N2, CO2/CH4, CO2/N2, and H2/CO2 separations|
+
 
 Using the saved models, it is possible to extract the model's [SHAP values](https://shap.readthedocs.io/en/latest/index.html) to interpret trained ML models in step 3.5. For example, run:
 ```
