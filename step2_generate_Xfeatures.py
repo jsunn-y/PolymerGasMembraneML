@@ -109,7 +109,7 @@ if __name__ == '__main__':
     parser.add_argument('--features', type=str, required = True, 
     	help='Choose either "desc" for chemical descriptors or "fing" for fingerprints as the input features')
     parser.add_argument('--dataset', type=str, required = True, 
-    	help='Specify the filename, without .csv, (datasetB or datasetC) within the dataset folder to compute the features of. This files should have a single column of Smiles Strings')        
+    	help='Specify the filename (datasetB.csv or datasetC.csv) within the dataset folder to compute the features of. This files should have a single column of SMILES Strings labeled with "Smiles"')        
 
     parsed_args = parser.parse_args()
 
