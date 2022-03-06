@@ -16,7 +16,7 @@ def calculate_representations(args):
     os.chdir(os.getcwd() + '/datasets/')
     DatasetA_Smiles_P = pd.read_csv("datasetA_imputed_all.csv")
     DatasetA_grouped = DatasetA_Smiles_P.groupby('Smiles').mean().reset_index()
-    Dataset = pd.read_csv(args.dataset)
+    Dataset = pd.read_csv(args.dataset + '.csv')
     
     if args.features == 'desc':
         #get the descriptors from SMILES for Dataset A
@@ -38,7 +38,7 @@ def calculate_representations(args):
             mol = Chem.MolFromSmiles(smiles)
             datasetX_descriptors.iloc[i,:] = [f[1](mol) for f in Descriptors.descList]
         datasetX_descriptors = datasetX_descriptors[selected_keys]
-        filename = args.dataset + 'X_desc.csv'
+        filename = args.dataset + '_X_desc.csv'
         datasetX_descriptors.to_csv(filename, index=False)
         print('Features saved to /datasets/'+ filename)
 
@@ -98,7 +98,7 @@ def calculate_representations(args):
             
         MY_finger_dataset = pd.DataFrame(MY_finger)  
         MY_finger_dataset.columns = selected_Corr_df.index
-        filename = args.dataset + 'X_fing.csv'
+        filename = args.dataset + '_X_fing.csv'
         MY_finger_dataset.to_csv(filename, index=False)
         print('Features saved to /datasets/'+ filename)
 
@@ -109,7 +109,7 @@ if __name__ == '__main__':
     parser.add_argument('--features', type=str, required = True, 
     	help='Choose either "desc" for chemical descriptors or "fing" for fingerprints as the input features')
     parser.add_argument('--dataset', type=str, required = True, 
-    	help='Specify the filename (datasetB.csv or datasetC.csv) within the dataset folder to compute the features of. This files should have a single column of SMILES Strings labeled with "Smiles"')        
+    	help='Specify the filename without csv (datasetB.csv or datasetC.csv) within the dataset folder to compute the features of. This files should have a single column of SMILES Strings labeled with "Smiles"')        
 
     parsed_args = parser.parse_args()
 
