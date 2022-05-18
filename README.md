@@ -47,8 +47,8 @@ We also include several pretrained models in `/pretrained_models` that reproduce
 |Smiles |SMILES string for the polymer| 
 |Smi_A |SMILES string for the diamine/diisocyanante component of the polymer| 
 |Smi_B |SMILES string for the dianhydride component of the polymer| 
-|SA_A |Synthetic accessibility socre for component A|
-|SA_B |Synthetic accessibility socre for component B|
+|SA_A |Synthetic accessibility score for component A|
+|SA_B |Synthetic accessibility score for component B|
 |He, H2, O2, N2, CO2, CH4 |log_10 of the gas permeability measured in Barrer|
 |Ondist, CCdist, CNdist, HCdist|log_10 of the distance above the 2008 Robeson upper bound for O2/N2, CO2/CH4, CO2/N2, and H2/CO2 separations|
 
